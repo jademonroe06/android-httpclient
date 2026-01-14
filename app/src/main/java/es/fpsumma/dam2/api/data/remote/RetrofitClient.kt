@@ -6,7 +6,7 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 
 object RetrofitClient {
 
-    private const val BASE_URL = "http://10.0.2.2:3000/" // 👈 cambia puerto
+    private const val BASE_URL = "http://10.0.2.2:3000/" //preguntar que puerto hay que poner
 
     private val retrofit: Retrofit by lazy {
         Retrofit.Builder()
