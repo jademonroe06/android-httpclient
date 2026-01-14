@@ -92,4 +92,25 @@ class TareasRemoteViewModel : ViewModel() {
             }
         }
     }
+
+    //función para borrar
+    fun deleteTarea(id: Int) = viewModelScope.launch {
+        _state.update { it.copy(loading = true, error = null) }
+
+        runCatching {
+            val res = api.borrar(id)
+            if (!res.isSuccessful) error("Error al borrar: ${res.code()}")
+        }.onSuccess {
+            //refresco del listado después de borrar
+            loadTareas()
+        }.onFailure { e ->
+            _state.update { current ->
+                current.copy(
+                    error = e.message ?: "Error al eliminar la tarea",
+                    loading = false
+                )
+            }
+        }
+    }
+
 }

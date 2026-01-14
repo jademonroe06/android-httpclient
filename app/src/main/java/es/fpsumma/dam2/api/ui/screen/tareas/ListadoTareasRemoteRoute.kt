@@ -30,8 +30,10 @@ fun ListadoTareasRemoteRoute(
             //aunque sea API, reutilizo la navegación de detalle si es necesario
             navController.navigate(Routes.tareaView(id))
         },
-
-        onDelete = { },
+        //conexión del evento onDelete con la función del ViewModel
+        onDelete = { id ->
+            vm.deleteTarea(id)
+        },
         modifier = modifier
     )
 }
