@@ -42,6 +42,10 @@ class TareasRemoteViewModel : ViewModel() {
      * - Si va bien: convierte DTO -> modelo de app (Tarea) y lo guarda en el estado
      * - Si falla: guarda el error en el estado
      */
+
+    private val _selected = MutableStateFlow<Tarea?>(null)
+    val selected: StateFlow<Tarea?> = _selected
+
     fun loadTareas() = viewModelScope.launch {
         // 1) Antes de llamar a la red, avisamos a la UI de que estamos cargando.
         //    También limpiamos errores previos.
@@ -90,6 +94,19 @@ class TareasRemoteViewModel : ViewModel() {
                     loading = false
                 )
             }
+        }
+    }
+
+    //función para poder obtener el detalla de yna tarea
+    fun loadTarea(id: Int) = viewModelScope.launch {
+        runCatching {
+            val res = api.detalle(id)
+            if (!res.isSuccessful) error("HTTP ${res.code()}")
+            res.body() ?: error("Sin body")
+        }.onSuccess { dto ->
+            _selected.value = Tarea(dto.id, dto.titulo, dto.descripcion)
+        }.onFailure { e ->
+            _state.update { it.copy(error = e.message ?: "Error cargando detalle") }
         }
     }
 
