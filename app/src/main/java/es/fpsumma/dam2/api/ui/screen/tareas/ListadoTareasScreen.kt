@@ -1,5 +1,5 @@
 package es.fpsumma.dam2.api.ui.screen.tareas
-
+/*
 import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -30,7 +30,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import es.fpsumma.dam2.api.ui.navegation.Routes
 import es.fpsumma.dam2.api.viewmodel.TareasViewModel
-/*
+
 @OptIn(ExperimentalMaterial3Api::class)
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable

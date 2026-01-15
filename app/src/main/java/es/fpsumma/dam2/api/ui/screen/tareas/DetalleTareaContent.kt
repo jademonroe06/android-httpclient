@@ -25,7 +25,7 @@ import es.fpsumma.dam2.api.model.Tarea
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun DetalleTareaContent(
-    tarea: Tarea?, // Recibe la tarea opcional
+    tarea: Tarea?, //recibe la tarea opcional
     onBack: () -> Unit,
     onSave: (titulo: String, descripcion: String) -> Unit,
     modifier: Modifier = Modifier
